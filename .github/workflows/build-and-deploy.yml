@@ -1,0 +1,27 @@
+# This is a comment
+name: Build and deploy
+
+on:
+  # This is another comment
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Comment on a specific step
+      - name: Build and deploy
+        run: |
+          docker build -t my-react-app .
+          docker run -p 3000:3000 my-react-app
+      # Additional step to deploy to GitHub Pages (optional)
+      # - name: Deploy to GitHub Pages
+      #   uses: gh-pages/deploy@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     ref: main
+      #     dir: build
